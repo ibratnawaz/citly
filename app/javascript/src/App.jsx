@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
+import NavBar from "components/NavBar";
+import Container from "components/Container";
+import Table from "components/Links/Table";
 import { initializeLogger } from "common/logger";
 
 const App = () => {
@@ -11,10 +14,11 @@ const App = () => {
 
   return (
     <Router>
+      <NavBar />
       <Switch>
-        <Route path="/">
-          <div>WELCOME</div>
-        </Route>
+        <Container>
+          <Route path="/" component={Table} />
+        </Container>
       </Switch>
     </Router>
   );
