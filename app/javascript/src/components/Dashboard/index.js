@@ -4,6 +4,7 @@ import Container from "components/Container";
 import PageLoader from "components/PageLoader";
 import ListLinks from "components/Links/ListLinks";
 import CreateLink from "components/Links/CreateLink";
+import Toastr from "components/Common/Toastr";
 import linksApi from "apis/links";
 
 const Dashboard = () => {
@@ -22,10 +23,11 @@ const Dashboard = () => {
     }
   };
 
-  const pinLink = async slug => {
+  const pinLink = async (slug, is_pinned) => {
     try {
       setLoading(true);
       const res = await linksApi.update(slug);
+      Toastr.success(`Link ${is_pinned ? "unpinned from" : "pinned to"} top!`);
       fetchLinks();
     } catch (error) {
       logger.error(error);
@@ -44,6 +46,7 @@ const Dashboard = () => {
       setLoading(true);
       await linksApi.create({ link: { original_url: link } });
       setLink("");
+      Toastr.success("Shortened URL created!");
       fetchLinks();
     } catch (error) {
       logger.error(error);

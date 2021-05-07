@@ -13,7 +13,7 @@ const TableRow = ({ links, visitLinkHandler, pinLink }) => {
                   ? "ri-pushpin-2-fill text-purple-500"
                   : "ri-pushpin-2-line"
               }`}
-              onClick={() => pinLink(link.slug)}
+              onClick={() => pinLink(link.slug, link.is_pinned)}
             ></i>
           </td>
           <td className="px-6 py-3 text-sm break-all font-medium leading-5 max-w-xs">
