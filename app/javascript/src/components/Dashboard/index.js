@@ -67,16 +67,6 @@ const Dashboard = () => {
     );
   }
 
-  if (!links.length) {
-    return (
-      <Container>
-        <h1 className="my-5 text-xl leading-5 text-center">
-          No shortened links created.
-        </h1>
-      </Container>
-    );
-  }
-
   return (
     <Container>
       <CreateLink
@@ -85,11 +75,17 @@ const Dashboard = () => {
         setLink={setLink}
         createLink={createLink}
       />
-      <ListLinks
-        links={links}
-        visitLinkHandler={visitLinkHandler}
-        pinLink={pinLink}
-      />
+      {!links.length ? (
+        <h1 className="my-5 text-xl leading-5 text-center">
+          No shortened links created.
+        </h1>
+      ) : (
+        <ListLinks
+          links={links}
+          visitLinkHandler={visitLinkHandler}
+          pinLink={pinLink}
+        />
+      )}
     </Container>
   );
 };
